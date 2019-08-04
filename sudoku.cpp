@@ -57,7 +57,7 @@ public:
         }
     }
 
-    void print() {
+    void printBoard() {
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
                 printf("%i ", board[i][j]);
@@ -81,6 +81,13 @@ public:
             }
         }
         return false;
+    }
+
+    void freeBoard() {
+        for (int i = 0; i < size; i++) {
+            free(board[i]);
+        }
+        free(board);
     }
 };
 
@@ -108,6 +115,7 @@ int main(void) {
 
     Sudoku* sudoku = new Sudoku(board, size);
     sudoku->solve();
-    sudoku->print();
+    sudoku->printBoard();
+    sudoku->freeBoard();
     return 0;
 }
